@@ -122,7 +122,7 @@ export function SpinWheel({ coupons }: SpinWheelProps) {
                   className="text-white font-bold text-sm whitespace-nowrap truncate max-w-[100px] drop-shadow-md rotate-90"
                   style={{ transformOrigin: "center" }}
                 >
-                  {coupon.category}
+                  {coupon.title}
                 </span>
               </div>
             );

@@ -112,3 +112,17 @@ export async function updateCoupon(id: string, data: {
     return { success: false, error: "Failed to update coupon" };
   }
 }
+export async function resetCouponRedemptions(id: string) {
+  if (!await checkAuth()) return { success: false, error: "Unauthorized" };
+  try {
+    await prisma.$transaction([
+      prisma.redemption.deleteMany({ where: { coupon_id: id } }),
+      prisma.coupon.update({ where: { id }, data: { is_redeemed: false } }),
+    ]);
+    revalidatePath("/manage");
+    revalidatePath("/");
+    return { success: true };
+  } catch (e) {
+    return { success: false, error: "Failed to reset redemptions" };
+  }
+}

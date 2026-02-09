@@ -1,12 +1,17 @@
 "use client";
 
 import { useState } from "react";
-import { createCoupon, deleteCoupon, updateCoupon } from "@/app/manage/actions";
+import {
+  createCoupon,
+  deleteCoupon,
+  updateCoupon,
+  resetCouponRedemptions,
+} from "@/app/manage/actions";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { Card, CardContent } from "@/components/ui/Card";
 import { Modal } from "@/components/ui/Modal";
-import { Edit, Trash2, Plus, RotateCcw } from "lucide-react";
+import { Edit, Trash2, Plus, RotateCcw, RefreshCcw } from "lucide-react";
 
 interface Category {
   id: string;
@@ -91,8 +96,13 @@ export default function CouponManager({
   };
 
   const handleResetRedemption = async (id: string) => {
-    if (!confirm("Mark as NOT fully redeemed?")) return;
-    await updateCoupon(id, { is_redeemed: false });
+    if (
+      !confirm(
+        "Reset redemption count to 0? This will delete all redemption records.",
+      )
+    )
+      return;
+    await resetCouponRedemptions(id);
   };
 
   return (
@@ -132,16 +142,14 @@ export default function CouponManager({
               </div>
 
               <div className="flex gap-2 shrink-0">
-                {coupon.is_redeemed && (
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => handleResetRedemption(coupon.id)}
-                    title="Reset Status"
-                  >
-                    <RotateCcw size={16} />
-                  </Button>
-                )}
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => handleResetRedemption(coupon.id)}
+                  title="Reset Count & Status"
+                >
+                  <RefreshCcw size={16} />
+                </Button>
                 <Button
                   variant="outline"
                   size="sm"

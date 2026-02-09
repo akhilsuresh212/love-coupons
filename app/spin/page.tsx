@@ -12,6 +12,7 @@ export default async function SpinPage() {
   // User said "one per available coupon". "Available" usually implies unredeemed.
   const coupons = await prisma.coupon.findMany({
     where: { is_redeemed: false },
+    include: { redemptions: true },
   });
 
   return (
