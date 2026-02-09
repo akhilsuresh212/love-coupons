@@ -1,0 +1,31 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Coupon {
+  id          String   @id @default(uuid())
+  title       String
+  description String
+  category    String
+  is_redeemed Boolean  @default(false)
+  created_at  DateTime @default(now())
+
+  redemptions Redemption[]
+}
+
+model Redemption {
+  id          String   @id @default(uuid())
+  coupon_id   String
+  note        String?
+  redeemed_at DateTime @default(now())
+
+  coupon Coupon @relation(fields: [coupon_id], references: [id])
+}
