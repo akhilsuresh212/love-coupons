@@ -8,6 +8,7 @@ async function main() {
       title: "Massages on Demand 💆‍♂️",
       description: "Redeem for a 30-minute relaxing massage whenever needed.",
       category: "Relaxation",
+      redemptionLimit: 3,
     },
     {
       title: "Movie Night Choice 🎬",
@@ -54,6 +55,7 @@ async function main() {
         title: coupon.title,
         description: coupon.description,
         category: coupon.category,
+        redemptionLimit: coupon.redemptionLimit,
       }
     })
   }

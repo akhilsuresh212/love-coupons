@@ -5,6 +5,7 @@ CREATE TABLE "Coupon" (
     "description" TEXT NOT NULL,
     "category" TEXT NOT NULL,
     "is_redeemed" BOOLEAN NOT NULL DEFAULT false,
+    "redemptionLimit" INTEGER NOT NULL DEFAULT 1,
     "created_at" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 

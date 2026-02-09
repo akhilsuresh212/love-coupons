@@ -9,6 +9,7 @@ export const dynamic = "force-dynamic";
 export default async function Home() {
   const coupons = await prisma.coupon.findMany({
     orderBy: { created_at: "asc" },
+    include: { redemptions: true },
   });
 
   return (

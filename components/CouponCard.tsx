@@ -17,6 +17,8 @@ interface Coupon {
   description: string;
   category: string;
   is_redeemed: boolean;
+  redemptionLimit: number;
+  redemptions: { id: string }[];
 }
 
 interface CouponCardProps {
@@ -44,10 +46,16 @@ export function CouponCard({ coupon }: CouponCardProps) {
             >
               {coupon.category}
             </span>
-            {coupon.is_redeemed && (
+            {coupon.is_redeemed ? (
               <span className="text-xs font-bold text-gray-500 flex items-center gap-1">
-                Redeemed ❤️
+                Redeemed {coupon.redemptions.length}/{coupon.redemptionLimit} ❤️
               </span>
+            ) : (
+              coupon.redemptionLimit > 1 && (
+                <span className="text-xs font-bold text-pink-600 flex items-center gap-1">
+                  {coupon.redemptions.length}/{coupon.redemptionLimit} Used
+                </span>
+              )
             )}
           </div>
           <CardTitle

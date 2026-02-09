@@ -15,10 +15,11 @@ model Coupon {
   title       String
   description String
   category    String
-  is_redeemed Boolean  @default(false)
-  created_at  DateTime @default(now())
+  is_redeemed      Boolean      @default(false)
+  redemptionLimit  Int          @default(1)
+  created_at       DateTime     @default(now())
 
-  redemptions Redemption[]
+  redemptions      Redemption[]
 }
 
 model Redemption {
