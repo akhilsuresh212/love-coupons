@@ -30,3 +30,8 @@ model Redemption {
 
   coupon Coupon @relation(fields: [coupon_id], references: [id])
 }
+
+model Category {
+  id   String @id @default(uuid())
+  name String @unique
+}
