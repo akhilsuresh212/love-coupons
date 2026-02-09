@@ -29,13 +29,13 @@ export default function AdminDashboard({
           <div className="flex items-center gap-4">
             <nav className="flex gap-2">
               <Button
-                variant={activeTab === "coupons" ? "default" : "ghost"}
+                variant={activeTab === "coupons" ? "primary" : "ghost"}
                 onClick={() => setActiveTab("coupons")}
               >
                 Coupons
               </Button>
               <Button
-                variant={activeTab === "categories" ? "default" : "ghost"}
+                variant={activeTab === "categories" ? "primary" : "ghost"}
                 onClick={() => setActiveTab("categories")}
               >
                 Categories
