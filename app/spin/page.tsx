@@ -1,5 +1,5 @@
 import { prisma } from "@/lib/db";
-import { SpinWheel } from "@/components/SpinWheel";
+import { Jackpot } from "@/components/Jackpot";
 import { FloatingHearts } from "@/components/ui/FloatingHearts";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
@@ -30,15 +30,15 @@ export default async function SpinPage() {
       <div className="w-full max-w-4xl mx-auto flex flex-col items-center gap-8">
         <div className="text-center space-y-2">
           <h1 className="text-4xl md:text-5xl font-great-vibes text-primary drop-shadow-sm">
-            Wheel of Love 🎡
+            Jackpot of Love 🎰
           </h1>
           <p className="text-muted-foreground">
-            Spin to decide our next adventure!
+            Hit the jackpot for our next adventure!
           </p>
         </div>
 
         {coupons.length > 0 ? (
-          <SpinWheel coupons={coupons} />
+          <Jackpot coupons={coupons} />
         ) : (
           <div className="text-center p-12 bg-white/50 rounded-2xl border border-pink-100 backdrop-blur-sm">
             <p className="text-xl text-gray-600 mb-4">
