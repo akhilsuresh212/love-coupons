@@ -6,7 +6,7 @@ CREATE TABLE "Coupon" (
     "category" TEXT NOT NULL,
     "is_redeemed" BOOLEAN NOT NULL DEFAULT false,
     "redemptionLimit" INTEGER NOT NULL DEFAULT 1,
-    "created_at" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+    "created_at" DATE NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
 -- CreateTable
@@ -14,6 +14,6 @@ CREATE TABLE "Redemption" (
     "id" TEXT NOT NULL PRIMARY KEY,
     "coupon_id" TEXT NOT NULL,
     "note" TEXT,
-    "redeemed_at" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "redeemed_at" DATE NOT NULL DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT "Redemption_coupon_id_fkey" FOREIGN KEY ("coupon_id") REFERENCES "Coupon" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
 );

@@ -1,0 +1,17 @@
+
+version: '3'
+
+services:
+  coupons-app:
+    container_name: coupons-app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      - NEXTAUTH_SECRET=changeme
+      - NEXTAUTH_URL=http://localhost:3000
+    env_file:
+      - .env
