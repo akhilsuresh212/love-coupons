@@ -96,7 +96,12 @@ export function SecurityModal({ isAuthenticated }: SecurityModalProps) {
                 : "Say the Magic Word 🪄"}
             </Button>
             <p className="text-xs text-gray-400">
-              (A secret scroll will be sent to your inbox)
+              A secret scroll will be sent to your email
+            </p>
+
+            <p className="text-xs text-gray-400">
+              Made with all the love in the world <br />
+              Just for my beautiful wife
             </p>
           </div>
         ) : (

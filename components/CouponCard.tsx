@@ -29,7 +29,7 @@ export function CouponCard({ coupon }: CouponCardProps) {
   return (
     <Link href={`/coupon/${coupon.id}`}>
       <Card
-        className={`h-full flex flex-col transition-all duration-300 hover:shadow-lg cursor-pointer group ${
+        className={`h-full min-h-[160px] sm:min-h-[180px] flex flex-col transition-all duration-300 hover:shadow-lg cursor-pointer group rounded-2xl ${
           coupon.is_redeemed
             ? "opacity-60 grayscale-[0.5] bg-gray-50"
             : "bg-white/80 hover:border-pink-300"
@@ -46,16 +46,16 @@ export function CouponCard({ coupon }: CouponCardProps) {
             >
               {coupon.category}
             </span>
-            {coupon.is_redeemed ? (
-              <span className="text-xs font-bold text-gray-500 flex items-center gap-1">
-                Redeemed {coupon.redemptions.length}/{coupon.redemptionLimit} ❤️
+            {(coupon.is_redeemed || coupon.redemptionLimit > 1) && (
+              <span
+                className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${
+                  coupon.is_redeemed
+                    ? "bg-gray-200 text-gray-500"
+                    : "bg-pink-100 text-pink-600"
+                }`}
+              >
+                {coupon.redemptions.length}/{coupon.redemptionLimit}
               </span>
-            ) : (
-              coupon.redemptionLimit > 1 && (
-                <span className="text-xs font-bold text-pink-600 flex items-center gap-1">
-                  {coupon.redemptions.length}/{coupon.redemptionLimit} Used
-                </span>
-              )
             )}
           </div>
           <CardTitle

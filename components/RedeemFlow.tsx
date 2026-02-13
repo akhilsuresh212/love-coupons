@@ -3,13 +3,6 @@
 import { useState } from "react";
 import { Coupon } from "@prisma/client";
 import { Button } from "./ui/Button";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "./ui/Card";
 import confetti from "canvas-confetti";
 import { redeemCoupon } from "@/app/actions";
 import { useRouter } from "next/navigation";
