@@ -52,6 +52,14 @@ export function RedeemFlow({ coupon }: RedeemFlowProps) {
     setIsSubmitting(true);
     const result = await redeemCoupon(coupon.id, note);
     if (result.success) {
+      // Dispatch streak update event for StreakDisplay
+      if (result.streakResult) {
+        window.dispatchEvent(
+          new CustomEvent("streak-update", {
+            detail: result.streakResult,
+          }),
+        );
+      }
       router.push("/");
     } else {
       alert("Something went wrong. Please try again.");

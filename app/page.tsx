@@ -1,6 +1,7 @@
 import { prisma } from "@/lib/db";
 import { CouponCard } from "@/components/CouponCard";
 import { FloatingHearts } from "@/components/ui/FloatingHearts";
+import { StreakDisplay } from "@/components/StreakDisplay";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 
@@ -38,11 +39,14 @@ export default async function Home() {
           </div>
         </header>
 
-        <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 pb-20">
+        {/* Streak Display */}
+        <StreakDisplay />
+
+        <div className="columns-2 lg:columns-3 xl:columns-4 gap-4 sm:gap-6 pb-20 space-y-4 sm:space-y-6">
           {coupons.map((coupon) => (
             <div
               key={coupon.id}
-              className="animate-in fade-in slide-in-from-bottom duration-700"
+              className="break-inside-avoid animate-in fade-in slide-in-from-bottom duration-700"
               style={{ animationDelay: `${Math.random() * 500}ms` }}
             >
               <CouponCard coupon={coupon} />

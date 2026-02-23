@@ -29,14 +29,14 @@ export function CouponCard({ coupon }: CouponCardProps) {
   return (
     <Link href={`/coupon/${coupon.id}`}>
       <Card
-        className={`h-full min-h-[160px] sm:min-h-[180px] flex flex-col transition-all duration-300 hover:shadow-lg cursor-pointer group rounded-2xl ${
+        className={`flex flex-col transition-all duration-300 hover:shadow-lg cursor-pointer group rounded-2xl ${
           coupon.is_redeemed
             ? "opacity-60 grayscale-[0.5] bg-gray-50"
             : "bg-white/80 hover:border-pink-300"
         }`}
       >
         <CardHeader>
-          <div className="flex justify-between items-start mb-2">
+          <div className="mb-2">
             <span
               className={`text-xs font-bold px-2 py-1 rounded-full uppercase tracking-wider ${
                 coupon.is_redeemed
@@ -46,28 +46,24 @@ export function CouponCard({ coupon }: CouponCardProps) {
             >
               {coupon.category}
             </span>
-            {(coupon.is_redeemed || coupon.redemptionLimit > 1) && (
-              <span
-                className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${
-                  coupon.is_redeemed
-                    ? "bg-gray-200 text-gray-500"
-                    : "bg-pink-100 text-pink-600"
-                }`}
-              >
-                {coupon.redemptions.length}/{coupon.redemptionLimit}
-              </span>
-            )}
           </div>
           <CardTitle
             className={`group-hover:text-primary transition-colors ${coupon.is_redeemed ? "text-gray-600" : ""}`}
           >
             {coupon.title}
           </CardTitle>
+          {(coupon.is_redeemed || coupon.redemptionLimit > 1) && (
+            <p
+              className={`text-[11px] font-semibold mt-1 ${
+                coupon.is_redeemed ? "text-gray-400" : "text-pink-400"
+              }`}
+            >
+              {coupon.redemptions.length}/{coupon.redemptionLimit} used
+            </p>
+          )}
         </CardHeader>
         <CardContent className="flex-grow">
-          <p className="text-muted-foreground line-clamp-2 text-sm">
-            {coupon.description}
-          </p>
+          <p className="text-muted-foreground text-sm">{coupon.description}</p>
         </CardContent>
         <CardFooter>
           <Button
